@@ -11,7 +11,7 @@ phases:
   post_build:
     commands:
       - echo Deploying the application...
-      - sam deploy --s3-bucket sam-bucket-jonathan --parameter-overrides SQSQueueArn="arn:aws:sqs:us-east-1:288761751518:Jonathan-UploadsNotificationQueue"
+      - sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --s3-bucket sam-bucket-jonathan --parameter-overrides SQSQueueArn="arn:aws:sqs:us-east-1:288761751518:Jonathan-UploadsNotificationQueue"
       # - sam deploy --template-file .aws-sam/build/template.yaml \
       #              --stack-name your-stack-name \
       #              --capabilities CAPABILITY_IAM \
