@@ -4,10 +4,6 @@ phases:
   install:
     runtime-versions:
       nodejs: 18 # or whichever version you're using
-    commands:
-      - echo Installing dependencies...
-      - npm install -g aws-sam-cli
-      - npm install
   build:
     commands:
       - echo Building the project...
@@ -15,12 +11,13 @@ phases:
   post_build:
     commands:
       - echo Deploying the application...
-      - sam deploy --template-file .aws-sam/build/template.yaml \
-                   --stack-name your-stack-name \
-                   --capabilities CAPABILITY_IAM \
-                   --region your-region \
-                   --no-confirm-changeset \
-                   --no-fail-on-empty-changeset
+      - sam deploy --s3-bucket sam-bucket-jonathan --parameter-overrides SQSQueueArn="arn:aws:sqs:us-east-1:288761751518:Jonathan-UploadsNotificationQueue"
+      # - sam deploy --template-file .aws-sam/build/template.yaml \
+      #              --stack-name your-stack-name \
+      #              --capabilities CAPABILITY_IAM \
+      #              --region your-region \
+      #              --no-confirm-changeset \
+      #              --no-fail-on-empty-changeset
 artifacts:
   files:
     - '**/*'
