@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18 # or whichever version you're using
+    commands:
+      - echo Installing dependencies...
+      - npm install -g aws-sam-cli
+      - npm install
+  build:
+    commands:
+      - echo Building the project...
+      - sam build
+  post_build:
+    commands:
+      - echo Deploying the application...
+      - sam deploy --template-file .aws-sam/build/template.yaml \
+                   --stack-name your-stack-name \
+                   --capabilities CAPABILITY_IAM \
+                   --region your-region \
+                   --no-confirm-changeset \
+                   --no-fail-on-empty-changeset
+artifacts:
+  files:
+    - '**/*'

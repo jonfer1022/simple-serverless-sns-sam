@@ -1,0 +1,9 @@
+node_modules
+.env
+generated
+index.mjs
+prisma
+git remote add origin https://github.com/jonfer1022/simple-serverless-sns-sam.git
+git branch -M main
+git push -u origin main
+# sam deploy --s3-bucket sam-bucket-jonathan --parameter-overrides SQSQueueArn="arn:aws:sqs:us-east-1:288761751518:Jonathan-UploadsNotificationQueue";
