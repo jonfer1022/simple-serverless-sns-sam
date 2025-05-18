@@ -12,9 +12,10 @@ const sns = new SNSClient({
 })
 
 export const handler = async (event, context) => {
-    console.log("Event: ", event);
+    console.log("--> Credentials: ", process.env)
+    console.log("--> Event: ", event);
     const records = event.Records;
-    console.log("Records: ",records);
+    console.log("--> Records: ",records);
 
     if(!records) {
         console.log("No records processed!");
@@ -30,6 +31,7 @@ export const handler = async (event, context) => {
             TopicArn: topicARN,
             Subject: "Processed SQS Queue messages"
         }
+        console.log("Input: ", input);
         const command = new PublishCommand(input)
         const res = await sns.send(command)
         console.log(res, record.body)
