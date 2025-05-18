@@ -12,6 +12,7 @@ const sns = new SNSClient({
 })
 
 export const handler = async (event, context) => {
+    console.log(context)
     console.log("--> Credentials: ", process.env)
     console.log("--> Event: ", event);
     const records = event.Records;
